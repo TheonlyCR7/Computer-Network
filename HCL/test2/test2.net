@@ -1,0 +1,60 @@
+autostart = False
+version = 2.1.1
+[vbox 127.0.0.1:16600]
+    workingdir = None
+    udp = 16000
+    [[PC PC2]]
+        image = .
+        device_id = 3
+        bridge_mac = 68-74-34-68-03-00
+        slot0 = PC 250
+        GE_0/1 = SW1 GE_0/2
+        symbol = PC
+        x = 57.0
+        y = 62.0
+        z = 5.0
+    [[S5820V2-54QS-GE SW1]]
+        image = .
+        device_id = 1
+        bridge_mac = 86-5c-c2-4d-01-00
+        slot0 = S5800 512
+        GE_0/1 = PC1 GE_0/1
+        GE_0/2 = PC2 GE_0/1
+        x = -76.0
+        y = -151.0
+        z = 5.0
+    [[PC PC1]]
+        image = .
+        device_id = 2
+        bridge_mac = 68-74-31-f9-02-00
+        slot0 = PC 250
+        GE_0/1 = SW1 GE_0/1
+        symbol = PC
+        x = -207.0
+        y = 61.0
+        z = 5.0
+[GNS3-DATA]
+    [[NOTE 1]]
+        text = "192.168.10.10"
+        x = -244.0
+        y = 146.0
+        font = "Arial,14,-1,5,75,0,0,0,0,0"
+        z = 6.0
+    [[NOTE 2]]
+        text = "G1/0/2"
+        x = 33.0
+        y = -51.0
+        font = "Arial,14,-1,5,75,0,0,0,0,0"
+        z = 6.0
+    [[NOTE 3]]
+        text = "192.168.10.20\n"
+        x = 13.0
+        y = 142.0
+        font = "Arial,14,-1,5,75,0,0,0,0,0"
+        z = 6.0
+    [[NOTE 4]]
+        text = "G1/0/1"
+        x = -203.0
+        y = -72.0
+        font = "Arial,14,-1,5,75,0,0,0,0,0"
+        z = 6.0
