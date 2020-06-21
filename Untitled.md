@@ -1,309 +1,122 @@
-## 什么是计算机网络
+# 网络的网络
 
->   将一些可以传递信息的硬件通过网络连接起来，所组成的网络
->
->   不仅是软件概念，还包括硬件设备
->
->   不仅是信息通信，支持应用
+网络把主机连接起来，而互连网（internet）是把多种不同的网络连接起来，因此互连网是网络的网络。而互联网（Internet）是全球范围的互连网
 
-### 分类
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/network-of-networks.gif)
 
-#### 作用范围分
 
--   广域网（WAN)   方圆几十到几千公里   跨省跨国
--   城域网（MAN)     方圆5千米到50千米   城市间
--   局域网（LAN)       1千米以内的地区内，家庭
 
-#### 使用者分
+# [ISP](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=isp)
 
--   公用网络
--   专用网络
+互联网服务提供商 ISP 可以从互联网管理机构获得许多 IP 地址，同时拥有通信线路以及路由器等联网设备，个人或机构向 ISP 缴纳一定的费用就可以接入互联网
 
-### 计算机的历史
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/72be01cd-41ae-45f7-99b9-a8d284e44dd4.png)
 
--   第一阶段：单个网络（美国军方）
 
-    通过交换机将多个端系统（主机）相连接
 
--   第二阶段：三级结构互联网
+目前的互联网是一种多层次 ISP 结构，ISP 根据覆盖面积的大小分为第一层 ISP、区域 ISP 和接入 ISP。互联网交换点 IXP 允许两个 ISP 直接相连而不用经过第三个 ISP。
 
-    树状网络（图）
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/3be42601-9d33-4d29-8358-a9d16453af93.png)
 
--   第三阶段：多层次   ISP 互联网
 
-     ISP（Internet Service Provider)  网络服务提供商  （中国电信，中国移动， 中国联通等）
 
-    各个国家地区的ISP彼此连接
+# [主机之间的通信方式](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=主机之间的通信方式)
 
-    每个ISP（中国移动） 与自身地区ISP（北京移动）相连接
+-   客户-服务器（C/S）：客户是服务的请求方，服务器是服务的提供方。
 
-    地区ISP与客户网络相连接（校园，公司，小区等）（图）
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/914894c2-0bc4-46b5-bef9-0316a69ef521.jpg)
 
-    #### 现代互联网的主要线路
 
-    海底电缆
 
-![picture](F:/Linux_notes/Computer_Network/photo/2.png)
+-   对等（P2P）：不区分客户和服务器。
 
-#### 中国互联网的历史
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/42430e94-3137-48c0-bdb6-3cebaf9102e3.jpg)
 
--   1980年互联网实验
--   1989年公共网络
--   1994年接入国际互联网
 
->   国家级ISP:：中国电信，联通，移动互联网，中国教育与科研计算机网，中国科学技术网
 
-通过这五个网络与世界网络连接，访问外网
+# [电路交换与分组交换](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=电路交换与分组交换)
 
+## [1. 电路交换](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_1-电路交换)
 
+电路交换用于电话通信系统，两个用户要通信之前需要建立一条专用的物理链路，并且在整个通信过程中始终占用该链路。由于通信的过程中不可能一直在使用传输线路，因此电路交换对线路的利用率很低，往往不到 10%。
 
-## 网络层
+## [2. 分组交换](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_2-分组交换)
 
-### 计算机
+每个分组都有首部和尾部，包含了源地址和目的地址等控制信息，在同一个传输线路上同时传输多个分组互相不会影响，因此在同一条传输线路上允许同时传输多个分组，也就是说分组交换不需要占用传输线路。
 
-基于网卡实现通信
+在一个邮局通信系统中，邮局收到一份邮件之后，先存储下来，然后把相同目的地的邮件一起转发到下一个目的地，这个过程就是存储转发过程，分组交换也使用了存储转发过程。
 
-### 中继器
+# [时延](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=时延)
 
--   在物理层，简单的信号放大器
--   信号在传输中发生衰减，中继器的作用就是将信号放大，使信号传的更远
+总时延 = 排队时延 + 处理时延 + 传输时延 + 传播时延
 
-### 集线器
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/4b2ae78c-e254-44df-9e37-578e2f2bef52.jpg)
 
--   中继器的一种形式，
 
 
+## [1. 排队时延](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_1-排队时延)
 
-# 网络层
+分组在路由器的输入队列和输出队列中排队等待的时间，取决于网络当前的通信量。
 
->   解决了数据路由（决定数据在网络的路径）
+## [2. 处理时延](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_2-处理时延)
 
-![picture](F:/Linux_notes/Computer_Network/photo/25.jpg)
+主机或路由器收到分组时进行处理所需要的时间，例如分析首部、从分组中提取数据、进行差错检验或查找适当的路由等。
 
-解决了A到B传输数据的问题
+## [3. 传输时延](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_3-传输时延)
 
-![picture](F:/Linux_notes/Computer_Network/photo/26.jpg)
+主机或路由器传输数据帧所需要的时间。
 
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/dcdbb96c-9077-4121-aeb8-743e54ac02a4.png)
 
 
-## IP协议详解
 
-### 虚拟互联网络
+其中 l 表示数据帧的长度，v 表示传输速率。
 
--   实际的计算机网络是复杂的
--   物理设备使用IP协议，屏蔽了物理网络之间的差异
--   当网络中的主机使用IP协议连接时，则无需关注网络细节
+## [4. 传播时延](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_4-传播时延)
 
+电磁波在信道中传播所需要花费的时间，电磁波传播的速度接近光速。
 
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/a1616dac-0e12-40b2-827d-9e3f7f0b940d.png)
 
-### IP协议
 
->   使复杂的实际网络变为一个虚拟互联的网络
->
->   使网络层可以屏蔽底层细节而专注网络层的数据转发
->
->   解决了在虚拟网络中数据包传输路径的问题
 
-#### IP地址
+其中 l 表示信道长度，v 表示电磁波在信道上的传播速度。
 
-![picture](F:/Linux_notes/Computer_Network/photo/27.jpg)
+# [计算机网络体系结构](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=计算机网络体系结构)
 
-#### IP数据报
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/0fa6c237-a909-4e2a-a771-2c5485cd8ce0.png)
 
->   由IP首部和IP数据报的数据组成
 
-![picture](F:/Linux_notes/Computer_Network/photo/28.jpg)
 
-##### IP首部的组成
+## [1. 五层协议](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_1-五层协议)
 
-![picture](F:/Linux_notes/Computer_Network/photo/29.jpg)
+-   **应用层** ：为特定应用程序提供数据传输服务，例如 HTTP、DNS 等协议。数据单位为报文。
+-   **传输层** ：为进程提供通用数据传输服务。由于应用层协议很多，定义通用的传输层协议就可以支持不断增多的应用层协议。运输层包括两种协议：传输控制协议 TCP，提供面向连接、可靠的数据传输服务，数据单位为报文段；用户数据报协议 UDP，提供无连接、尽最大努力的数据传输服务，数据单位为用户数据报。TCP 主要提供完整性服务，UDP 主要提供及时性服务。
+-   **网络层** ：为主机提供数据传输服务。而传输层协议是为主机中的进程提供数据传输服务。网络层把传输层传递下来的报文段或者用户数据报封装成分组。
+-   **数据链路层** ：网络层针对的还是主机之间的数据传输服务，而主机之间可以有很多链路，链路层协议就是为同一链路的主机提供数据传输服务。数据链路层把网络层传下来的分组封装成帧。
+-   **物理层** ：考虑的是怎样在传输媒体上传输数据比特流，而不是指具体的传输媒体。物理层的作用是尽可能屏蔽传输媒体和通信手段的差异，使数据链路层感觉不到这些差异。
 
-###### 4位版本
+## [2. OSI](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_2-osi)
 
->   占4位，通信双方版本必须一致，当前主流为**IPv4**， 也有**IPv6**
+其中表示层和会话层用途如下：
 
-###### 首部位长度
+-   **表示层** ：数据压缩、加密以及数据描述，这使得应用程序不必关心在各台主机中数据内部格式不同的问题。
+-   **会话层** ：建立及管理会话。
 
->   占4位，最大数值为15，表示IP首部长度，单位是“32位字”，也即是IP首部最大长度位60字节
+五层协议没有表示层和会话层，而是将这些功能留给应用程序开发者处理。
 
-###### 总长度
+## [3. TCP/IP](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_3-tcpip)
 
->   占16位，最大数值为65535，表示IP数据报总长度（若超过MTU长度，则会被分片）
+它只有四层，相当于五层协议中数据链路层和物理层合并为网络接口层。
 
-###### 标志
+TCP/IP 体系结构不严格遵循 OSI 分层概念，应用层可能会直接使用 IP 层或者网络接口层。
 
->   表示数据报是否可以分片
+![img](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/48d79be8-085b-4862-8a9d-18402eb93b31.png)
 
-###### 片偏移
 
->   记录分片操作时，进行到了第几次分片
 
-###### TTL
+## [4. 数据在各层之间的传递过程](https://cyc2018.github.io/CS-Notes/#/notes/计算机网络 - 概述?id=_4-数据在各层之间的传递过程)
 
->   占8位，表明IP数据报文在网络中的寿命，每经过一个设备，TTL自减一，TTL = 0时，报文被丢弃
->
->   避免数据在网络中被无限传输
+在向下的过程中，需要添加下层协议所需要的首部或者尾部，而在向上的过程中不断拆开首部和尾部。
 
-###### 协议
-
->   占8位，表明IP数据所携带的具体数据是什么协议
-
-![picture](F:/Linux_notes/Computer_Network/photo/30.jpg)
-
-######  首部校验和
-
->   占16位，校验IP首部是否有出错
-
-###### 源IP地址，目的IP地址
-
->   即发送设备的IP,接受设备的IP,都为32位
-
-## IP协议的转发流程
-
-**逐跳hop-by-hop**
-
->   数据报从一个设备跳到另外一个设备，直到跳到目标设备
-
-### 路由器
-
-#### 路由表
-
->   计算机或者路由器都拥有路由表
->
->   包含MAC地址和硬件接口，目的IP地址，下一跳IP地址
-
-![picture](F:/Linux_notes/Computer_Network/photo/31.jpg)
-
-### IP协议的转发流程
-
-当发生跨数据传输时
-
-**在网络层发生**
-
-
-![picture](F:/Linux_notes/Computer_Network/photo/32.jpg)
-
->   在网络层，网络链路层发生
-
-![picture](F:/Linux_notes/Computer_Network/photo/32.jpg)
-![picture](F:/Linux_notes/Computer_Network/photo/33.jpg)
-![picture](F:/Linux_notes/Computer_Network/photo/34.jpg)
-![picture](F:/Linux_notes/Computer_Network/photo/50.jpg)
-
->   在每一跳中，
-
--   数据帧的MAC地址都在变化
--   IP数据报的IP地址始终不变
-
-
-
-## ARP协议与RARP协议
-
-ARP地址解析协议
-
-将 **网络层IP32位地址** 转为  **数据链路层MAC48位地址**
-
-
-
-### ARP缓存表
-
->   数据报在设备之间传递时，路由器通过查看ARP缓存表，知道IP地址对应的MAC地址
-
-![picture](F:/Linux_notes/Computer_Network/photo/38.jpg)
-
--   ARP缓存表缓存有IP地址和MAC地址的映射关系
--   ARP缓存表缓存**没有I**P地址和MAC地址的映射关系
--   ARP缓存表是ARP协议和RARP协议运行的关键
--   缓存记录有一定期限
--   查看ARP缓存表的命令行是  arp -a
-
-### RARP协议
-
-与ARP协议相反，为  **逆地址解析协议**
-
-将 **数据链路层MAC48位地址** 转为  **网络层IP32位地址**
-
-
-
-## IP地址的子网划分
-
-### 分类的IP地址
-
-![picture](F:/Linux_notes/Computer_Network/photo/39.jpg)
-
-由网络号和主机号组成
-
--   A类地址：8位网络号，24位主机号
--   B类地址：16位网络号，16位主机号
--   C类地址：24位网络号，8位主机号
--   D类地址，E类地址为特殊用途
-
-#### 特殊的主机号
-
--   主机号全为0表示当前网络段，不可分配为特定主机
--   主机号全为1表示广播地址，向当前所有网络段所有主机发消息
-
-#### 特殊的主机号
-
--   A类地址网络端全为0表示特殊网络
--   A类地址网络段后7为全为1表示**回环地址**
--   B类地址网络段（10000000.00000000:128.0）是不可使用的
--   C类地址网络段（192.0.0）是不可使用的
-
-![picture](F:/Linux_notes/Computer_Network/photo/40.jpg)
-
-#### 判断属于哪类地址
-
-前八位为
-
--   011  A
--   101  B
--   110  C
--   1110  D
--   1111  E
-
-![picture](F:/Linux_notes/Computer_Network/photo/42.jpg)
-
-## 划分子网
-
-![picture](F:/Linux_notes/Computer_Network/photo/43.jpg)
-
-![picture](F:/Linux_notes/Computer_Network/photo/44.jpg)
-
-**将IP地址分为**
-
-网络号，子网号，主机号
-
-![picture](F:/Linux_notes/Computer_Network/photo/45.jpg)
-
-
-
-### 子网掩码
-
-**当子网变多时，通过子网掩码来判断**
-
--   子网掩码和IP地址一样，都是32位
--   子网掩码由连续的1和连续的0组成
--   某个子网的子网掩码具备与网络号位数相同个数的连续的1
-
-![picture](F:/Linux_notes/Computer_Network/photo/46.jpg)
-
-## 无分类编址CIDR
-
--   没有A	B	C类网络号，和子网划分的概念
--   CIDR  将网络前缀相同的IP地址称为一个“CIDR地址块”
--   由     网络前缀    主机号  组成  （网络前缀是任意位数的）
-
-### 斜线记法
-
-193.10.10.129/25           网络前缀为193.10.10.129       主机号为25        
-
-![picture](F:/Linux_notes/Computer_Network/photo/47.jpg)
-
-相比原来子网划分更加灵活
-
-![picture](F:/Linux_notes/Computer_Network/photo/48.jpg)
-
-#### 城市的CIDR划分
-
-![picture](./photo/49.jpg)
+路由器只有下面三层协议，因为路由器位于网络核心中，不需要为进程或者应用程序提供服务，因此也就不需要传输层和应用层
